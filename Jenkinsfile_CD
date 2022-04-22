@@ -10,7 +10,9 @@ pipeline {
     stage('Build') {
       steps {
         sh 'ls'
-        sh 'sudo ssh -i devops_rampup.pem ubuntu@10.0.3.10 'kubectl apply -f deploy-fe.yaml''
+        sh '''
+        sudo ssh -i devops_rampup.pem ubuntu@10.0.3.10 'kubectl apply -f deploy-fe.yaml'
+        '''
       }
     }
   }

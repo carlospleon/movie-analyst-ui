@@ -11,7 +11,7 @@ pipeline {
       steps {
         sh 'ls'
         sh '''
-        sudo ssh -i devops_rampup.pem ubuntu@10.0.3.10 "kubectl patch deployment movie-app-fe -p "{\"spec\": {\"template\": {\"metadata\": { \"labels\": {  \"redeploy\": \"$(date +%s)\"}}}}}" -n movie-app"
+        sudo ssh -i devops_rampup.pem ubuntu@10.0.3.10 "kubectl patch deployment movie-app-fe -p '{\'spec\': {\'template\': {\'metadata\': { \'labels\': {  \'redeploy\': \'$(date +%s)\'}}}}}' -n movie-app"
         '''
       }
     }

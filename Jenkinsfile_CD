@@ -11,7 +11,9 @@ pipeline {
       steps {
         sh 'ls'
         sh 'pwd'
-        sh 'ssh -i devops_rampup.pem ubuntu@10.0.3.10'
+        sh '''sudo ssh -i devops_rampup.pem ubuntu@10.0.3.10
+              sudo kubectl apply -f deploy-fe.yaml    
+        '''
         sh 'ls'
       }
     }

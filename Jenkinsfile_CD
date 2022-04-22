@@ -14,7 +14,7 @@ pipeline {
         echo 'kubectl apply -f deploy-fe.yaml' >> kube.sh
         '''
         sh 'cat kube.sh'
-        sh 'sh kube.sh'
+        sh 'echo $HOME'
       }
     }
   }

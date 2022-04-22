@@ -1,4 +1,10 @@
 pipeline {
+    
+    environment {
+        registry = "carlospleon/frontend"
+        registryCredential = 'dockerhub'
+    }
+
     agent any
 
     stages {
@@ -18,12 +24,18 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'cd /var/lib/jenkins/workspace/CI'
-                sh '''
-                docker build -t carlospleon/frontend:v1 .
-                sudo su
-                docker push carlospleon/frontend:v1
-                '''
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('push') {
+            steps{
+                script {
+                   docker.withRegistry( '', registryCredential)  {
+                       dockerImage.push()
+                   }
+                }
             }
         }
     }

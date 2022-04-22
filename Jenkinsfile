@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t carlospleon/frontend:v1 .'
+        sh 'docker build -t carlospleon/frontend:latest .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push carlospleon/frontend:v1'
+        sh 'docker push carlospleon/frontend:latest'
       }
     }
   }

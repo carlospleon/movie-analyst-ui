@@ -21,7 +21,8 @@ pipeline {
                 sh 'cd /var/lib/jenkins/workspace/CI'
                 sh '''
                 docker build -t carlospleon/frontend:v1 .
-                sudo docker push carlospleon/frontend:v1
+                sudo su
+                docker push carlospleon/frontend:v1
                 '''
             }
         }

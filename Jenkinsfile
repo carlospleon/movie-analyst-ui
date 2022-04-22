@@ -17,15 +17,12 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     echo 'Success in'
-                    pwd()
+                    sh 'pwd'
                 }
             }
         }
         stage('Build') {
-            steps {
-                echo 'Success in'
-                pwd()
-            }
+            app = docker.build("carlospleon/minecraft:v1")
         }
     }
 }

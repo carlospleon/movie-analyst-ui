@@ -9,8 +9,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'ls'
+        sh 'pwd'
         sh 'ssh -i devops_rampup.pem ubuntu@10.0.3.10'
-        sh 'sh /var/lib/kubectl.sh'
+        sh 'ls'
       }
     }
   }

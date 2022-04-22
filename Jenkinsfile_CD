@@ -9,10 +9,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'ls'
+        sh 'ls -a'
         sh '''
         sudo ssh -i devops_rampup.pem ubuntu@10.0.3.10 'sh kubefe.sh'
-        '''
+        ''' 
       }
     }
   }

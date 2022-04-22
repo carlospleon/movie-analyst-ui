@@ -22,7 +22,9 @@ pipeline {
             }
         }
         stage('Build') {
-            app = docker.build("carlospleon/minecraft:v1")
+            steps {
+                app = docker.build("carlospleon/minecraft:v1")
+            }
         }
     }
 }

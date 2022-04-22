@@ -3,6 +3,7 @@ pipeline {
     environment {
         registry = "carlospleon/frontend"
         registryCredential = 'dockerhub'
+        dockerImage = ''
     }
 
     agent any
@@ -25,16 +26,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-        stage('push') {
-            steps{
-                script {
-                   docker.withRegistry( '', registryCredential)  {
-                       dockerImage.push()
-                   }
+                    dockerImage = docker.build(registry, ":$BUILD_NUMBER")
                 }
             }
         }

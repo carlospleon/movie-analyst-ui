@@ -1,30 +1,7 @@
-pipeline {
-    agent any
-    environment {
-        registry = "carlospleon/frontend"
-        registryCredential = 'dockerhub'
-        dockerImage = ''
-    }
+node {
+    checkout scm
 
-    stages {
-        stage('Pull') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/carlospleon/movie-analyst-ui.git'
-            }
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    echo 'Success in'
-                    sh 'pwd'
-                }
-            }
-        }
-        stage('Build') {
-            steps {
-                app = docker.build("carlospleon/minecraft:v1")
-            }
-        }
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        def customImage = docker.build("carlospleon/frontend:v1")
     }
 }

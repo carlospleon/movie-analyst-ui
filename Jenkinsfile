@@ -11,25 +11,18 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                    sh 'echo Success'
-                    sh 'ls'
+                    echo Success in
+                    sh 'pwd'
                 }
             }
         }
         stage('Build') {
             steps {
-                echo 'Building..'
-                sh 'ls'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..  '
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'cd /var/lib/jenkins/workspace/CI'
+                sh '''
+                docker build -t carlospleon/frontend:v1 .
+                docker push carlospleon/frontend:v1
+                '''
             }
         }
     }

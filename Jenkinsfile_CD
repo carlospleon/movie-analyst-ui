@@ -9,10 +9,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh '
+        sh '''
         echo '#!/bin/bash' > kube.sh
         echo 'sudo kubectl apply -f deploy-fe.yaml' >> kube.sh
-        '
+        '''
         sh 'ls'
       }
     }

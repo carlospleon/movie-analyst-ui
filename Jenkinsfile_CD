@@ -13,7 +13,8 @@ pipeline {
         echo '#!/bin/bash' > kube.sh
         echo 'sudo kubectl apply -f deploy-fe.yaml' >> kube.sh
         '''
-        sh 'ls'
+        sh 'cat kube.sh'
+        sh 'sh kube.sh'
       }
     }
   }

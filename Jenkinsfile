@@ -3,6 +3,7 @@ pipeline {
     environment {
         registry = "carlospleon/frontend"
         registryCredential = 'dockerhub'
+        dockerImage = ''
     }
 
     stages {
@@ -23,7 +24,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                   def dockerImage = docker.build(registry, ":$BUILD_NUMBER")
+                    dockerImage = docker.build(registry, ":$BUILD_NUMBER")
                 }
             }
         }
